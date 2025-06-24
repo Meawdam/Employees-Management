@@ -1,24 +1,26 @@
-export default function Employees() {
+import Employee from "./Employee";
+import { useState, useEffect } from "react";
+
+export default function Employees({ data }) {
+
+  const [name, setName] = useState(undefined);
+  const [position, setPosiotion] = useState(undefined);
+  const [wage, setWage] = useState(undefined);
+  const [gender, setGender] = useState(undefined);
+  const [show, setShow] = useState(true);
+
   return (
     <>
-      <button id="showData" className="btn btn-primary">
-        Show employee(s)
+      <button className="btn btn-primary" onClick={() => setShow(!show)}>
+        {show? 'Hide Employee(s)' : 'Show Employee(s)'}
       </button>
       <hr />
       <ul className="list-unstyled">
-        <li className="d-flex justify-content-between align-items-center m-3 p-3 border rounded shadow-sm">
-          <p>Name : John</p>
-          <p>Position : Manager</p>
-          <p>Wage : 30,000</p>
-          <img src="/public/man.svg" alt="man" height={100}/>
-        </li>
-        <li className="d-flex justify-content-between align-items-center m-3 p-3 border rounded shadow-sm">
-          <p>Name : John</p>
-          <p>Position : Manager</p>
-          <p>Wage : 30,000</p>
-          <img src="/public/man.svg" alt="man" height={100}/>
-        </li>
+      {show && data.map((element) => {
+        return <Employee key={element.id} data={element} />
+      }) }
       </ul>
+
     </>
   );
 }
