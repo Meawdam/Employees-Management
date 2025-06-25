@@ -2,11 +2,7 @@ import Employee from "./Employee";
 import { useState, useEffect } from "react";
 
 export default function Employees({ data }) {
-
-  const [name, setName] = useState(undefined);
-  const [position, setPosiotion] = useState(undefined);
-  const [wage, setWage] = useState(undefined);
-  const [gender, setGender] = useState(undefined);
+  
   const [show, setShow] = useState(true);
 
   return (

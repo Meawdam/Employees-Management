@@ -11,7 +11,20 @@ const db = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: '',
-    database: 'employees-management'
+    database: 'employee_management'
+});
+
+app.post('/employees', (req, res) => {
+    const {name, position, wage, gender} = req.body;
+    db.query('INSERT INTO employee (name, position, wage, gender) VALUE(?, ?, ?, ?)', [name, position, wage, gender], (error, result) => {
+        if(error){
+            res.status(500).send('Cannot add. Somthing went wrong, please try again.')
+        } else{
+            res.status(200).send('Employee inserted');
+        }
+    }
+
+    );
 });
 
 app.get('/employees', (req, res) => {
@@ -19,7 +32,7 @@ app.get('/employees', (req, res) => {
         if(error){
             return res.status(500).send('Database sever is Error');
         }
-        res.send(result.json());
+        res.send(result);
     });
 });
 

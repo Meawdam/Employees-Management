@@ -1,7 +1,30 @@
-export default function Form() {
+import { useState } from "react";
+
+export default function Form({ onAdd }) {
+  const [formData, setFormData] = useState({
+    name: "",
+    position: "",
+    wage: "",
+    gender: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onAdd(formData);
+    setFormData({ name: "", position: "", wage: "", gender: "" });
+  };
+
   return (
     <section>
-      <form id="formAdd">
+      <form id="formAdd" onSubmit={handleSubmit}>
         <label className="form-label" htmlFor="name">
           Name :
         </label>
@@ -10,6 +33,8 @@ export default function Form() {
           type="text"
           name="name"
           id="name"
+          value={formData.name}
+          onChange={handleChange}
           required
         />
 
@@ -21,6 +46,8 @@ export default function Form() {
           type="text"
           name="position"
           id="position"
+          value={formData.position}
+          onChange={handleChange}
           required
         />
 
@@ -32,6 +59,8 @@ export default function Form() {
           type="number"
           name="wage"
           id="wage"
+          value={formData.wage}
+          onChange={handleChange}
           required
         />
 
@@ -44,6 +73,8 @@ export default function Form() {
             name="gender"
             id="male"
             value="Male"
+            checked={formData.gender === "Male"}
+            onChange={handleChange}
             required
           />
           <label className="form-check-label" htmlFor="male">
@@ -58,6 +89,8 @@ export default function Form() {
             name="gender"
             id="female"
             value="Female"
+            checked={formData.gender === "Female"}
+            onChange={handleChange}
             required
           />
           <label className="form-check-label" htmlFor="female">
@@ -71,7 +104,9 @@ export default function Form() {
             type="radio"
             name="gender"
             id="unspecified"
-            value="Un specified"
+            value="Not specified"
+            checked={formData.gender === "Not specified"}
+            onChange={handleChange}
             required
           />
           <label className="form-check-label" htmlFor="unspecified">

@@ -6,12 +6,12 @@ import { useState, useEffect } from "react";
 
 function App() {
   const [data, setData] = useState(null);
-  const [error, setError] = useState(null); // ✅ เพิ่ม error state
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("https://aes.shenlu.me/api/v1/species");
+        const response = await fetch("http://localhost:3000/employees");
         if (!response.ok) {
           throw new Error("Bad response from server");
         }
@@ -25,8 +25,26 @@ function App() {
     fetchData();
   }, []);
 
+  const addEmployees = async (employee) => {
+    try {
+      const option = {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(employee),
+      };
+      if (!response.ok) throw await response.text;
+      fetchData();
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+
   if (error) {
-    return <h1 className="container d-flex justify-content-center text-danger">❌ Error: {error}</h1>;
+    return (
+      <h1 className="container d-flex justify-content-center text-danger">
+        ❌ Error: {error}
+      </h1>
+    );
   }
 
   if (!data) {
@@ -44,7 +62,7 @@ function App() {
 
       <main className="flex-grow-1">
         <div className="container py-4">
-          <Form />
+          <Form onAdd={addEmployees} />
           <hr />
           <Employees data={data} />
         </div>
