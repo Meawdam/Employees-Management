@@ -8,20 +8,20 @@ function App() {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch("http://localhost:3000/employees");
-        if (!response.ok) {
-          throw new Error("Bad response from server");
-        }
-        const json = await response.json();
-        setData(json);
-      } catch (err) {
-        setError(err.message);
+  const fetchData = async () => {
+    try {
+      const response = await fetch("http://localhost:3000/employees");
+      if (!response.ok) {
+        throw new Error("Bad response from server");
       }
-    };
+      const json = await response.json();
+      setData(json);
+    } catch (err) {
+      setError(err.message);
+    }
+  };
 
+  useEffect(() => {
     fetchData();
   }, []);
 
@@ -32,8 +32,9 @@ function App() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(employee),
       };
+      const response = await fetch('http://localhost:3000/employees', option);
       if (!response.ok) throw await response.text;
-      fetchData();
+      await fetchData();
     } catch (error) {
       console.error(error.message);
     }
