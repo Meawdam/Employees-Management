@@ -32,8 +32,36 @@ function App() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(employee),
       };
-      const response = await fetch('http://localhost:3000/employees', option);
+      const response = await fetch("http://localhost:3000/employees", option);
       if (!response.ok) throw await response.text;
+      await fetchData();
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+
+  const updateWage = async (id, wage) => {
+    try {
+      const option = {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({id, wage}),
+      };
+      const response = await fetch(`http://localhost:3000/employees/${id}`, option);
+      if (!response.ok) throw await response.text();
+      await fetchData();
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const deleteEm = async (id) => {
+    try {
+      const response = await fetch(`http://localhost:3000/employees/${id}`, {
+        method: "DELETE",
+      });
+      const msg = await response.text();
+      if (!response.ok) throw new Error(msg);
       await fetchData();
     } catch (error) {
       console.error(error.message);
@@ -65,7 +93,7 @@ function App() {
         <div className="container py-4">
           <Form onAdd={addEmployees} />
           <hr />
-          <Employees data={data} />
+          <Employees data={data} onUpdate={updateWage} onDelete={deleteEm} />
         </div>
       </main>
 

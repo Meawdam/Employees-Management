@@ -1,7 +1,7 @@
 import Employee from "./Employee";
 import { useState, useEffect } from "react";
 
-export default function Employees({ data }) {
+export default function Employees({ data, onUpdate, onDelete }) {
   
   const [show, setShow] = useState(true);
 
@@ -13,7 +13,7 @@ export default function Employees({ data }) {
       <hr />
       <ul className="list-unstyled">
       {show && data.map((element) => {
-        return <Employee key={element.id} data={element} />
+        return <Employee key={element.id} data={element} onUpdate={onUpdate} onDelete={onDelete}/>
       }) }
       </ul>
 
