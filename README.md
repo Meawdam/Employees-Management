@@ -1,4 +1,4 @@
-# Employees Management
+# Employee Management
 
 ## 🧩 Tech
 - **Frontend**: HTML + JavaScript  
@@ -8,7 +8,7 @@
 ---
 
 ## 🛠️ Feature
-- ✅ Show Employees's information
+- ✅ Show Employees' information
 - ✅ Add new Employee
 - ✅ Edit Employee's wage
 - ✅ Remove Employees
@@ -21,7 +21,7 @@
 
 ---
 
-## ⚙️ Install and Run project
+## ⚙️ Install and Run the project
 ```bash
 # Clone project
 git clone https://github.com/Meawdam/Employees-Management.git
@@ -33,5 +33,5 @@ npm install
 cd server
 npm start
 
-cs client
+cd client
 npm start
