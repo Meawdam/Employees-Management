@@ -1,6 +1,37 @@
-<!-- <li className="d-flex justify-content-between align-items-center m-3 p-3 border rounded shadow-sm">
-        <p>Name : John</p>
-        <p>Position : Manager</p>
-        <p>Wage : 30,000</p>
-        <img src="/public/man.svg" alt="man" height={100} />
-      </li> -->
+# Employees Management
+
+## 🧩 Tech
+- **Frontend**: HTML + JavaScript  
+- **Backend**: Node.js + MySQL
+- **Libs/Frameworks**: Express + Bootstrap + React
+
+---
+
+## 🛠️ Feature
+- ✅ Show Employees's information
+- ✅ Add new Employee
+- ✅ Edit Employee's wage
+- ✅ Remove Employees
+
+---
+
+## 🧑‍💻 Prerequisites
+- install [Node.js](https://nodejs.org/)  
+- install package management such as 'npm' or 'yarn'
+
+---
+
+## ⚙️ Install and Run project
+```bash
+# Clone project
+git clone https://github.com/Meawdam/Employees-Management.git
+
+# Install dependencies
+npm install
+
+# Run React and Run server
+cd server
+npm start
+
+cs client
+npm start
